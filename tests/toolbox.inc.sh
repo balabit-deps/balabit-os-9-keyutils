@@ -202,10 +202,8 @@ function pause_till_key_destroyed ()
     echo "+++ WAITING FOR KEY TO BE DESTROYED" >>$OUTPUTFILE
     hexkeyid=`printf %08x $1`
 
-    while grep $hexkeyid /proc/keys
-    do
-	sleep 1
-    done
+    # /proc/keys is not accessible inside docker, so just wait for a bit
+    sleep 5
 }
 
 ###############################################################################
